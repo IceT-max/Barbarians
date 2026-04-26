@@ -83,9 +83,9 @@ Doppio click su `index.html` e combatti.
 
 ## Crediti
 
-- **Programmazione** — Fabrizio
-- **Design nemici** — Fabrizio
-- **Sceneggiatura** — Fabrizio
+- **Programmazione** — IceT-max
+- **Design nemici** — IceT-max
+- **Sceneggiatura** — IceT-max
 - **Goblin** — nessuno sa chi l'ha messo lì, è apparso un giorno e nessuno ha avuto il coraggio di toglierlo
 
 ---
