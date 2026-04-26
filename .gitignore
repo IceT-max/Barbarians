@@ -1,0 +1,28 @@
+# Dipendenze
+node_modules/
+
+# Build / distribuzione
+dist/
+build/
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.user
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Log
+*.log
+npm-debug.log*
+
+# Env
+.env
+.env.local
+
+# Claude Code
+.claude/

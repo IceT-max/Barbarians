@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>BARBARIANS - The Ultimate Warrior</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.2/pixi.min.js"></script>
+</head>
+<body>
+  <div id="wrapper">
+
+    <div id="menu-screen" class="screen">
+      <div class="title-art">
+        <div class="title-line1">BARBARIANS</div>
+        <div class="title-line2">THE ULTIMATE WARRIOR</div>
+      </div>
+      <div class="menu-buttons">
+        <button class="menu-btn" id="btn-1p">1 GIOCATORE</button>
+        <button class="menu-btn" id="btn-2p">2 GIOCATORI</button>
+        <button class="menu-btn" id="btn-hiscore">CLASSIFICA</button>
+      </div>
+      <div class="controls-panel">
+        <div class="ctrl-col">
+          <div class="ctrl-title">GIOCATORE 1</div>
+          <div class="ctrl-row"><span class="key">← →</span> Muoviti</div>
+          <div class="ctrl-row"><span class="key">↑</span> Salta</div>
+          <div class="ctrl-row"><span class="key">↓</span> Accovacciati</div>
+          <div class="ctrl-row"><span class="key">Z</span> Fendente</div>
+          <div class="ctrl-row"><span class="key">X</span> Colpo dall'alto</div>
+          <div class="ctrl-row"><span class="key">C</span> Affondo</div>
+          <div class="ctrl-row"><span class="key">V</span> Parata</div>
+        </div>
+        <div class="ctrl-col">
+          <div class="ctrl-title">GIOCATORE 2</div>
+          <div class="ctrl-row"><span class="key">A D</span> Muoviti</div>
+          <div class="ctrl-row"><span class="key">W</span> Salta</div>
+          <div class="ctrl-row"><span class="key">S</span> Accovacciati</div>
+          <div class="ctrl-row"><span class="key">U</span> Fendente</div>
+          <div class="ctrl-row"><span class="key">I</span> Colpo dall'alto</div>
+          <div class="ctrl-row"><span class="key">O</span> Affondo</div>
+          <div class="ctrl-row"><span class="key">P</span> Parata</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-screen" class="screen hidden">
+      <div id="hud">
+        <div class="hud-player" id="hud-left">
+          <div class="hud-name">BARBARIAN</div>
+          <div class="health-bar" id="hp-p1"></div>
+        </div>
+        <div id="hud-center">
+          <div id="round-label">ROUND</div>
+          <div id="round-num">1</div>
+          <div id="level-label"></div>
+          <div id="score-display">000000</div>
+        </div>
+        <div class="hud-player hud-right" id="hud-right">
+          <div class="hud-name" id="hud-p2-name">DRAX</div>
+          <div class="health-bar" id="hp-p2"></div>
+        </div>
+      </div>
+      <div id="pixi-container"></div>
+      <div id="message-overlay" class="hidden">
+        <div id="message-text"></div>
+      </div>
+      <div id="princess-overlay" class="hidden">
+        <div id="princess-title">PRINCIPESSA MARIANA È LIBERA!</div>
+        <div id="princess-sub">HAI SCONFITTO DRAX E SALVATO IL REGNO</div>
+        <button class="menu-btn" id="btn-princess-menu">MENU PRINCIPALE</button>
+      </div>
+    </div>
+
+    <div id="result-screen" class="screen hidden">
+      <div id="result-title"></div>
+      <div id="result-sub"></div>
+      <div class="menu-buttons">
+        <button class="menu-btn" id="btn-again">RIVINCITA</button>
+        <button class="menu-btn" id="btn-to-menu">MENU</button>
+      </div>
+    </div>
+
+    <!-- ── CLASSIFICA ──────────────────────────────────── -->
+    <div id="hiscore-screen" class="screen hidden">
+      <div class="title-art">
+        <div class="title-line2">HALL OF FAME</div>
+      </div>
+      <table id="hiscore-table">
+        <thead>
+          <tr><th>#</th><th>NOME</th><th>PUNTEGGIO</th><th>LIVELLO</th></tr>
+        </thead>
+        <tbody id="hiscore-tbody"></tbody>
+      </table>
+      <div class="menu-buttons" style="margin-top:24px">
+        <button class="menu-btn" id="btn-hs-menu">MENU</button>
+        <button class="menu-btn" id="btn-hs-reset">RESET RECORD</button>
+      </div>
+      <!-- Modale reset -->
+      <div id="reset-modal" class="hidden">
+        <div id="reset-box">
+          <div id="reset-question">CANCELLARE TUTTI I RECORD?</div>
+          <div class="menu-buttons">
+            <button class="menu-btn" id="btn-reset-yes">SÌ, RESETTA</button>
+            <button class="menu-btn" id="btn-reset-no">ANNULLA</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── INSERIMENTO NOME (stile arcade) ─────────────── -->
+    <div id="nameentry-screen" class="screen hidden">
+      <div class="title-art">
+        <div class="title-line2">NUOVO RECORD!</div>
+      </div>
+      <div id="ne-info">
+        <div id="ne-score"></div>
+        <div id="ne-level"></div>
+      </div>
+      <div id="ne-prompt">INSERISCI IL TUO NOME</div>
+      <div id="ne-chars">
+        <div class="ne-char" id="ne-c0">A</div>
+        <div class="ne-char" id="ne-c1">A</div>
+        <div class="ne-char" id="ne-c2">A</div>
+      </div>
+      <div id="ne-hint">↑↓ LETTERA &nbsp;·&nbsp; ←→ CURSORE &nbsp;·&nbsp; INVIO CONFERMA</div>
+      <button class="menu-btn" id="btn-ne-confirm">CONFERMA</button>
+    </div>
+
+  </div>
+
+  <script src="js/sound.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/fighter.js"></script>
+  <script src="js/graphics.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
